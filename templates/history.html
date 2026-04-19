@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}History — PhishGuard 2.0{% endblock %}
+ 
+{% block content %}
+ 
+<div class="page-header">
+  <h1>📜 Check History</h1>
+  <a href="/export_history" class="btn btn-success">⬇️ Export CSV</a>
+</div>
+ 
+<div class="card">
+  {% if data %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>URL</th>
+          <th>Result</th>
+          <th>Score</th>
+          <th>Checked At</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in data %}
+          {% if "Phishing" in row[2] %}
+            {% set cls = "phishing" %}
+          {% elif "Suspicious" in row[2] %}
+            {% set cls = "suspicious" %}
+          {% else %}
+            {% set cls = "safe" %}
+          {% endif %}
+          <tr>
+            <td style="color:#475569;">{{ loop.index }}</td>
+            <td style="color:#e2e8f0; max-width:380px;">{{ row[1] }}</td>
+            <td><span class="badge badge-{{ cls }}">{{ row[2] }}</span></td>
+            <td><strong>{{ row[3] }}</strong></td>
+            <td style="white-space:nowrap; font-size:.82rem;">{{ row[4] }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <div class="icon">🔍</div>
+    <p>No URLs checked yet. <a href="/">Analyse one!</a></p>
+  </div>
+  {% endif %}
+</div>
+ 
+{% endblock %}
+ 

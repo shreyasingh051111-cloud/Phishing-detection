@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}PhishGuard 2.0 — URL Checker{% endblock %}
+ 
+{% block content %}
+<div class="hero">
+  <h1>🛡️ PhishGuard 2.0</h1>
+  <p>Paste any URL below to instantly detect phishing, malware, and suspicious signals using 12 detection methods.</p>
+ 
+  <div class="card">
+    <form class="check-form" method="POST" action="/">
+      <div class="input-group">
+        <input
+          type="text"
+          name="url"
+          placeholder="https://example.com/verify-your-account"
+          required
+          autofocus
+        />
+        <button type="submit" class="btn btn-primary">🔍 Analyse</button>
+      </div>
+    </form>
+  </div>
+</div>
+ 
+<div class="features">
+  <div class="feature-card">
+    <div class="icon">🗄️</div>
+    <h3>Blacklist DB</h3>
+    <p>Checks against a live database of known malicious URLs.</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">🌐</div>
+    <h3>Google Safe Browsing</h3>
+    <p>Cross-references Google's real-time threat intelligence API.</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">📅</div>
+    <h3>Domain Age</h3>
+    <p>Flags newly registered domains commonly used in attacks.</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">🔬</div>
+    <h3>12-Point Analysis</h3>
+    <p>Entropy, keywords, subdomains, HTTPS, IP usage & more.</p>
+  </div>
+</div>
+{% endblock %}
+ 
+ 

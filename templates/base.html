@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}PhishGuard 2.0{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>/* page-specific overrides only */
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0f1117;
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+ 
+    /* ── NAV ── */
+    nav {
+      background: #1a1d2e;
+      border-bottom: 1px solid #2d3154;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+ 
+    .nav-brand {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #818cf8;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+ 
+    .nav-links { display: flex; gap: 1.5rem; }
+ 
+    .nav-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: .9rem;
+      transition: color .2s;
+    }
+ 
+    .nav-links a:hover { color: #818cf8; }
+ 
+    /* ── MAIN WRAPPER ── */
+    main { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+ 
+    /* ── CARD ── */
+    .card {
+      background: #1a1d2e;
+      border: 1px solid #2d3154;
+      border-radius: 16px;
+      padding: 2rem;
+    }
+ 
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .65rem 1.4rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: .9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity .2s, transform .1s;
+    }
+    .btn:hover { opacity: .85; }
+    .btn:active { transform: scale(.97); }
+ 
+    .btn-primary { background: #818cf8; color: #0f1117; }
+    .btn-secondary { background: #2d3154; color: #e2e8f0; }
+    .btn-success  { background: #22c55e; color: #0f1117; }
+ 
+    /* ── FLASH-STYLE ALERTS ── */
+    .alert {
+      padding: .8rem 1.2rem;
+      border-radius: 8px;
+      margin-bottom: 1.2rem;
+      font-size: .9rem;
+    }
+    .alert-info { background: #1e3a5f; border-left: 4px solid #60a5fa; }
+  </style>
+</head>
+<body>
+ 
+<nav>
+  <a class="nav-brand" href="/">🛡️ PhishGuard</a>
+  <div class="nav-links">
+    <a href="/">Check URL</a>
+    <a href="/history">History</a>
+    <a href="/export_history">Export CSV</a>
+  </div>
+</nav>
+ 
+<main>
+  {% block content %}{% endblock %}
+</main>
+ 
+</body>
+</html>
+ 

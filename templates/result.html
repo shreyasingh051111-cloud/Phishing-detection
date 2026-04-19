@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Result — PhishGuard 2.0{% endblock %}
+ 
+{% block content %}
+ 
+{% if "Phishing" in result %}
+  {% set cls = "phishing" %}
+{% elif "Suspicious" in result %}
+  {% set cls = "suspicious" %}
+{% else %}
+  {% set cls = "safe" %}
+{% endif %}
+ 
+{% set bar_width = [score, 100] | min %}
+ 
+<div class="result-header">
+  <div class="verdict-badge verdict-{{ cls }}">{{ result }}</div>
+  <div class="url-display">{{ url }}</div>
+</div>
+ 
+<div class="card">
+  <div class="score-section">
+    <div class="score-label">Risk Score</div>
+    <div class="score-number score-{{ cls }}">
+      {{ score }}<span>/100+</span>
+    </div>
+    <div class="score-bar-track">
+      <div class="score-bar-fill fill-{{ cls }}" style="width: {{ bar_width }}%;"></div>
+    </div>
+  </div>
+</div>
+ 
+<div class="card">
+  <div class="reasons-title">📋 Detection Signals ({{ reasons | length }})</div>
+  <ul class="reasons-list">
+    {% for reason in reasons %}
+      <li>{{ reason }}</li>
+    {% endfor %}
+  </ul>
+</div>
+ 
+<div class="actions">
+  <a href="/" class="btn btn-primary">🔍 Check Another URL</a>
+  <a href="/history" class="btn btn-secondary">📜 View History</a>
+</div>
+ 
+{% endblock %}
+ 
